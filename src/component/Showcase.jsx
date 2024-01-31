@@ -141,10 +141,7 @@ const Showcase = () => {
                                   }}
                                 >
                                   {coin.networks.map((network, i) => (
-                                    <option
-                                      value={coin.name + network.name}
-                                      key={i}
-                                    >
+                                    <option value={network.name} key={i}>
                                       {coin.name} ({network.name})
                                     </option>
                                   ))}
@@ -383,13 +380,26 @@ const Showcase = () => {
                 </span>
                 <div className="flex items-center justify-center mt-5">
                   <img
-                    src={firstCoin?.scan}
+                    src={
+                      firstCoin?.networks
+                        ? firstCoin?.networks.find(
+                            (item) => item.name === firstCoin?.selectedNetwork
+                          )?.scan
+                        : firstCoin.scan
+                    }
                     alt="#"
                     className="h-[320px] w-[320px] object-contain"
                   />
                 </div>
                 <p className="text-gray-300 mt-5">
-                  Wallet Address: <span className="text-red-600">{firstCoin?.address}</span>
+                  Wallet Address:{" "}
+                  <span className="text-red-600">
+                    {firstCoin?.networks
+                      ? firstCoin?.networks.find(
+                          (item) => item.name === firstCoin?.selectedNetwork
+                        )?.address
+                      : firstCoin.address}
+                  </span>
                 </p>
                 <div className="flex items-center justify-between flex-wrap md:flex-nowrap">
                   <p className="text-gray-300 mt-5">
