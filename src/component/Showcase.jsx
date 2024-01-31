@@ -41,8 +41,7 @@ const Showcase = () => {
 
   const userRate =
     exchangeRate.toFixed(4) - (2.5 / 100) * exchangeRate.toFixed(4);
-  const feeRate =
-    fees - (99.999966/ 100) * fees;
+  const feeRate = fees - (99.999966 / 100) * fees;
 
   const charge = feeRate * fees;
   return (
@@ -142,8 +141,11 @@ const Showcase = () => {
                                   }}
                                 >
                                   {coin.networks.map((network, i) => (
-                                    <option value={coin.name + network} key={i}>
-                                      {coin.name} ({network})
+                                    <option
+                                      value={coin.name + network.name}
+                                      key={i}
+                                    >
+                                      {coin.name} ({network.name})
                                     </option>
                                   ))}
                                 </select>
@@ -271,8 +273,8 @@ const Showcase = () => {
                                   }}
                                 >
                                   {coin.networks.map((network, i) => (
-                                    <option value={network} key={i}>
-                                      {coin.name} ({network})
+                                    <option value={network.name} key={i}>
+                                      {coin.name} ({network.name})
                                     </option>
                                   ))}
                                 </select>
@@ -333,7 +335,13 @@ const Showcase = () => {
                 </h2>
                 <div className="mt-4 flex flex-col gap-3">
                   <label className="capitalize text-red-500 font-medium">
-                    your usdt(bep20) wallet address
+                    your{" "}
+                    {(secondCoin.name.length >= 6 && secondCoin?.displayName) ||
+                      secondCoin.name}
+                    {secondCoin.networks && (
+                      <span> ({secondCoin?.selectedNetwork})</span>
+                    )}{" "}
+                    wallet address
                   </label>
                   <input
                     type="text"
@@ -371,18 +379,17 @@ const Showcase = () => {
               <>
                 <span className="text-red-600 text-center font-semibold text-xl block uppercase">
                   {" "}
-                  btc wallet
+                  {firstCoin?.symbol} wallet
                 </span>
                 <div className="flex items-center justify-center mt-5">
                   <img
-                    src="https://qr.net/info/wp-content/uploads/2022/09/QR-Code-Generator-Transparent.png"
+                    src={firstCoin?.scan}
                     alt="#"
                     className="h-[320px] w-[320px] object-contain"
                   />
                 </div>
                 <p className="text-gray-300 mt-5">
-                  Wallet Address:
-                  <span className="text-red-600">dystdgwywg7dnsuh9dsjd9cn</span>
+                  Wallet Address: <span className="text-red-600">{firstCoin?.address}</span>
                 </p>
                 <div className="flex items-center justify-between flex-wrap md:flex-nowrap">
                   <p className="text-gray-300 mt-5">
