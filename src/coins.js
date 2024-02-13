@@ -6,6 +6,7 @@ export const coins = [
     displayName: "bitcoin",
     address: "bc1q25jw9r3pkr4a7kca2hehydz8l0vzx6qx43acpy",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722137/btcscan_tahwl2.png",
+    fees: 99.99999996,
   },
   {
     name: "litecoin",
@@ -14,6 +15,7 @@ export const coins = [
     displayName: "litecoin",
     address: "ltc1qu5mmazs54zdzvtyc9l3flyzrcr950x94fmau6l",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722627/ltcscan_e1qi39.png",
+    fees: 99.9,
   },
   {
     name: "ethereum",
@@ -22,6 +24,7 @@ export const coins = [
     displayName: "ethereum",
     address: "0x6Ba7BE27ba22842cbeCE43e169353FdDaBE1793d",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
+    fees: 99.999966,
   },
   {
     name: "binancecoin",
@@ -40,6 +43,7 @@ export const coins = [
       },
     ],
     displayName: "binance coin",
+    fees: 99.9996,
   },
   {
     name: "shiba-inu",
@@ -57,6 +61,7 @@ export const coins = [
         scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
       },
     ],
+    fees: 0,
   },
   {
     name: "tron",

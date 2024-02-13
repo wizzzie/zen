@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import { coins } from "../coins";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Showcase = () => {
   const [pay, setPay] = useState(false);
@@ -41,9 +42,11 @@ const Showcase = () => {
 
   const userRate =
     exchangeRate.toFixed(4) - (2.5 / 100) * exchangeRate.toFixed(4);
-  const feeRate = fees - (99.999966 / 100) * fees;
+  const feeRate = fees - (secondCoin?.fees / 100) * fees;
 
   const charge = feeRate * fees;
+
+  const { t } = useTranslation();
   return (
     <div className="mt-[40px] px-4" id="swap">
       <div className="container mx-auto">
@@ -54,10 +57,12 @@ const Showcase = () => {
           <div className="backdrop-blur-3xl bg-[#1a1a1a] p-5 rounded-xl">
             {stage === 1 && (
               <div>
-                <h2 className="text-red-600 text-3xl capitalize">exchanging</h2>
+                <h2 className="text-red-600 text-3xl capitalize">
+                  {t("exchanging")}
+                </h2>
                 <div className="mt-5">
                   <span className="capitalize text-white text-xl my-3 block">
-                    you pay:
+                    {t("pay")}:
                   </span>
                   <div className="relative grid grid-cols-2 md:grid-cols-6 items-center bg-[#f0f0f0]">
                     <input
@@ -140,6 +145,7 @@ const Showcase = () => {
                                     });
                                   }}
                                 >
+                                  <option value="">{coin.name}</option>
                                   {coin.networks.map((network, i) => (
                                     <option value={network.name} key={i}>
                                       {coin.name} ({network.name})
@@ -173,17 +179,17 @@ const Showcase = () => {
                   </div>
                   <div className="mt-6 flex items-center justify-between">
                     <span className="text-white capitalize text-xl block">
-                      min: 0.00001
+                      {t("minimum")}: 0.00001
                     </span>
                     <span className="text-white capitalize text-xl block">
-                      max: 4.51606
+                      {t("maximum")}: 4.51606
                     </span>
                   </div>
                 </div>
 
                 <div className="mt-5">
                   <span className="capitalize text-white text-xl my-3 block">
-                    you recieve:
+                    {t("recieve")}:
                   </span>
                   <div className="relative grid grid-cols-2 md:grid-cols-6 items-center bg-[#f0f0f0]">
                     <input
@@ -269,6 +275,7 @@ const Showcase = () => {
                                     });
                                   }}
                                 >
+                                  <option value="">{coin.name}</option>
                                   {coin.networks.map((network, i) => (
                                     <option value={network.name} key={i}>
                                       {coin.name} ({network.name})
@@ -302,43 +309,43 @@ const Showcase = () => {
                   </div>
                   <div className="mt-6 flex items-center justify-between">
                     <span className="text-white capitalize text-xl block">
-                      min: 0.00001
+                      {t("minimum")}: 0.00001
                     </span>
                     <span className="text-white capitalize text-xl block">
-                      max: 4.51606
+                      {t("maximum")}: 4.51606
                     </span>
                   </div>
                 </div>
                 <div className="mt-6">
                   <span className="text-red-600 uppercase text-xl">
                     {" "}
-                    1 {firstCoin.symbol} ={userRate.toFixed(7)}{" "}
-                    {secondCoin.symbol} (Fees: {feeRate.toFixed(10)}{" "}
+                    1 {firstCoin.symbol} ={userRate.toFixed(4)}{" "}
+                    {secondCoin.symbol} (Fees: {feeRate.toFixed(14)}{" "}
                     {secondCoin.symbol} = ${charge.toFixed(1)})
                   </span>
                 </div>
                 <button
-                  className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500"
+                  className="bg-red-600 w-full capitalize mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500"
                   onClick={() => setStage(stage + 1)}
                 >
-                  Confirm Swap
+                  {t("confirm")}
                 </button>
               </div>
             )}
             {stage === 2 && (
               <>
                 <h2 className="text-red-600 text-3xl capitalize">
-                  your details
+                  {t("your_details")}
                 </h2>
                 <div className="mt-4 flex flex-col gap-3">
                   <label className="capitalize text-red-500 font-medium">
-                    your{" "}
+                    {t("your")}{" "}
                     {(secondCoin.name.length >= 6 && secondCoin?.displayName) ||
                       secondCoin.name}
                     {secondCoin.networks && (
                       <span> ({secondCoin?.selectedNetwork})</span>
                     )}{" "}
-                    wallet address
+                    {t("wallet_address")}
                   </label>
                   <input
                     type="text"
@@ -348,7 +355,7 @@ const Showcase = () => {
                 </div>
                 <div className="mt-9 flex flex-col gap-3">
                   <label className="capitalize text-red-500 font-medium">
-                    your Email address
+                    {t("your_email_address")}
                   </label>
                   <input
                     type="text"
@@ -361,13 +368,13 @@ const Showcase = () => {
                     className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
                     onClick={() => setStage(stage - 1)}
                   >
-                    back
+                    {t("back")}
                   </button>
                   <button
                     className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
                     onClick={() => setStage(stage + 1)}
                   >
-                    Confirm order
+                    {t("confirm_order")}
                   </button>
                 </div>
               </>
@@ -376,7 +383,7 @@ const Showcase = () => {
               <>
                 <span className="text-red-600 text-center font-semibold text-xl block uppercase">
                   {" "}
-                  {firstCoin?.symbol} wallet
+                  {firstCoin?.symbol} {t("wallet")}
                 </span>
                 <div className="flex items-center justify-center mt-5">
                   <img
@@ -392,7 +399,7 @@ const Showcase = () => {
                   />
                 </div>
                 <p className="text-gray-300 mt-5">
-                  Wallet Address:{" "}
+                  {t("wallet_address")}:{" "}
                   <span className="text-red-600">
                     {firstCoin?.networks
                       ? firstCoin?.networks.find(
@@ -403,15 +410,15 @@ const Showcase = () => {
                 </p>
                 <div className="flex items-center justify-between flex-wrap md:flex-nowrap">
                   <p className="text-gray-300 mt-5">
-                    Amount:{" "}
+                    {t("amount")}:{" "}
                     <span className="text-red-600 uppercase">0.4500 btc</span>
                   </p>
                   <p className="text-gray-300 mt-5">
-                    Recieve:{" "}
+                    {t("recieve")}:{" "}
                     <span className="text-red-600 uppercase">0.4500 eth</span>
                   </p>
                   <p className="text-gray-300 mt-5">
-                    Fees:{" "}
+                    {t("fees")}:{" "}
                     <span className="text-red-600 uppercase">
                       0.4500 eth ($1)
                     </span>
@@ -421,7 +428,7 @@ const Showcase = () => {
                   className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
                   onClick={() => setStage(1)}
                 >
-                  Done
+                  {t("done")}
                 </button>
               </>
             )}
