@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import i18n from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
 import App from "./App.jsx";
@@ -12,6 +12,7 @@ i18n
   .use(LanguageDetector)
   .use(HttpApi)
   .init({
+    supportedLngs: ["ar", "de", "en", "es", "fr", "ru", "tr"],
     fallback: "en",
     detection: {
       order: [
@@ -29,11 +30,14 @@ i18n
     backend: {
       loadPath: "/assets/locales/{{lng}}/translation.json",
     },
-    react: { useSuspense: false },
   });
 
+const loading = <>loading.....</>;
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Suspense fallback={loading}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Suspense>
 );
