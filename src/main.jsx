@@ -12,7 +12,7 @@ i18n
   .use(LanguageDetector)
   .use(HttpApi)
   .init({
-    supportedLngs: ["ar", "de", "en", "es", "fr", "ru", "tr"],
+    supportedLngs: ["ar", "cn", "de", "en", "es", "fr", "ru", "tr"],
     fallback: "en",
     detection: {
       order: [

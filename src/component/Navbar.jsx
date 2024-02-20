@@ -51,6 +51,12 @@ const languages = [
     country_code: "de",
     img: "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png",
   },
+  {
+    code: "cn",
+    name: "中国人",
+    country_code: "cn",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/2560px-Flag_of_the_People%27s_Republic_of_China.svg.png",
+  },
 ];
 
 const Navbar = () => {
