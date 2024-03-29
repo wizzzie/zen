@@ -3,8 +3,12 @@ import { RiArrowDropDownFill } from "react-icons/ri";
 import { coins } from "../coins";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import Loading from "../component/Loading";
+import { toast } from "react-toastify";
+import { publicRequest } from "../request";
+import { ClipLoader } from "react-spinners";
 
-const Showcase = () => {
+const Showcase = ({ setShow }) => {
   const [pay, setPay] = useState(false);
   const [recieve, setRecieve] = useState(false);
   const [stage, setStage] = useState(1);
@@ -12,9 +16,61 @@ const Showcase = () => {
   const [payCoinRecieve, setPayCoinRecieve] = useState("");
   const [firstCoin, setFirstCoin] = useState(coins[0]);
   const [secondCoin, setSecondCoin] = useState(coins[2]);
-
   const [exchangeRate, setExchangeRate] = useState(0);
   const [fees, setFees] = useState(0);
+  const [priceLoad, setPriceLoad] = useState(true);
+
+  // LOADING STATE
+  const [load, setLoad] = useState(false);
+
+  //  MAKING ORDER
+  const [userWallet, setUserWallet] = useState("");
+  const [email, setEmail] = useState("");
+
+  const makeOrder = async () => {
+    if (userWallet === "") {
+      toast.error("Enter Wallet Address");
+    } else if (email === "") {
+      toast.error("Enter your Email");
+    } else {
+      setLoad(true);
+      try {
+        const res = await publicRequest.post("/order", {
+          from: firstCoin.selectedNetwork
+            ? firstCoin.name + "" + firstCoin.selectedNetwork
+            : firstCoin.name,
+          to: secondCoin.selectedNetwork
+            ? secondCoin.name + "" + secondCoin.selectedNetwork
+            : secondCoin.name,
+          fromImage: firstCoin.img,
+          toImage: secondCoin.img,
+          fromAmount: youPayInput,
+          toAmount: youPayInput * userRate,
+          toWallet: userWallet,
+          email: email,
+        });
+        toast.success(res.data.message);
+        setStage(stage + 1);
+        setLoad(false);
+      } catch (error) {
+        console.log(error);
+      }
+      console.log({
+        from: firstCoin.selectedNetwork
+          ? firstCoin.name + "" + firstCoin.selectedNetwork
+          : firstCoin.name,
+        to: secondCoin.selectedNetwork
+          ? secondCoin.name + "" + secondCoin.selectedNetwork
+          : secondCoin.name,
+        fromImage: firstCoin.img,
+        toImage: secondCoin.img,
+        fromAmount: youPayInput,
+        toAmount: youPayInput * userRate,
+        toWallet: userWallet,
+        email: email,
+      });
+    }
+  };
 
   // INPUT
   const [youPayInput, setYouPayInput] = useState(0);
@@ -31,6 +87,7 @@ const Showcase = () => {
       setFees(res.data[secondCoin.name].usd);
       setExchangeRate(firstToSecond);
       console.log(res);
+      setPriceLoad(false);
     } catch (error) {
       console.log(error);
     }
@@ -40,9 +97,15 @@ const Showcase = () => {
     getCoinData();
   }, [firstCoin, secondCoin]);
 
-  const userRate =
-    exchangeRate.toFixed(4) - (2.5 / 100) * exchangeRate.toFixed(4);
-  const feeRate = fees - (secondCoin?.fees / 100) * fees;
+  const userRate = exchangeRate + (2.5 / 100) * exchangeRate;
+  const feeRate =
+    fees >= 1
+      ? fees - (secondCoin?.fees / 100) * fees
+      : fees >= 0.01
+      ? secondCoin?.fees * fees * 0.5
+      : fees >= 0.6
+      ? secondCoin?.fees * fees * 0.00001
+      : secondCoin?.fees * fees * 5900000;
 
   const charge = feeRate * fees;
 
@@ -319,66 +382,85 @@ const Showcase = () => {
                 <div className="mt-6">
                   <span className="text-red-600 uppercase text-xl">
                     {" "}
-                    1 {firstCoin.symbol} ={userRate.toFixed(4)}{" "}
+                    1 {firstCoin.symbol} ={Number(userRate).toFixed(4)}{" "}
                     {secondCoin.symbol} (Fees: {feeRate.toFixed(14)}{" "}
                     {secondCoin.symbol} = ${charge.toFixed(1)})
                   </span>
                 </div>
-                <button
-                  className="bg-red-600 w-full capitalize mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500"
-                  onClick={() => setStage(stage + 1)}
-                >
-                  {t("confirm")}
-                </button>
+                {priceLoad ? (
+                  <div className="text-center my-3">
+                    <ClipLoader size={50} className="text-red-600"/>
+                  </div>
+                ) : (
+                  <button
+                    className="bg-red-600 w-full capitalize mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500"
+                    onClick={() => {
+                      if (youPayInput <= 0) {
+                        toast.info("Enter the minimum amount");
+                      } else {
+                        setStage(stage + 1);
+                      }
+                    }}
+                  >
+                    {t("confirm")}
+                  </button>
+                )}
               </div>
             )}
-            {stage === 2 && (
-              <>
-                <h2 className="text-red-600 text-3xl capitalize">
-                  {t("your_details")}
-                </h2>
-                <div className="mt-4 flex flex-col gap-3">
-                  <label className="capitalize text-red-500 font-medium">
-                    {t("your")}{" "}
-                    {(secondCoin.name.length >= 6 && secondCoin?.displayName) ||
-                      secondCoin.name}
-                    {secondCoin.networks && (
-                      <span> ({secondCoin?.selectedNetwork})</span>
-                    )}{" "}
-                    {t("wallet_address")}
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Wallet Address...."
-                    className="shadow-md shadow-red-100 p-2 rounded-md outline-none"
-                  />
-                </div>
-                <div className="mt-9 flex flex-col gap-3">
-                  <label className="capitalize text-red-500 font-medium">
-                    {t("your_email_address")}
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Email Address...."
-                    className="shadow-md shadow-red-100 p-2 rounded-md outline-none"
-                  />
-                </div>
-                <div className="flex gap-4">
-                  <button
-                    className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
-                    onClick={() => setStage(stage - 1)}
-                  >
-                    {t("back")}
-                  </button>
-                  <button
-                    className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
-                    onClick={() => setStage(stage + 1)}
-                  >
-                    {t("confirm_order")}
-                  </button>
-                </div>
-              </>
-            )}
+            {stage === 2 &&
+              (load ? (
+                <Loading />
+              ) : (
+                <>
+                  <h2 className="text-red-600 text-3xl capitalize">
+                    {t("your_details")}
+                  </h2>
+                  <div className="mt-4 flex flex-col gap-3">
+                    <label className="capitalize text-red-500 font-medium">
+                      {t("your")}{" "}
+                      {(secondCoin.name.length >= 6 &&
+                        secondCoin?.displayName) ||
+                        secondCoin.name}
+                      {secondCoin.networks && (
+                        <span> ({secondCoin?.selectedNetwork})</span>
+                      )}{" "}
+                      {t("wallet_address")}
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Wallet Address...."
+                      className="shadow-md shadow-red-100 p-2 rounded-md outline-none"
+                      onChange={(e) => setUserWallet(e.target.value)}
+                    />
+                  </div>
+                  <div className="mt-9 flex flex-col gap-3">
+                    <label className="capitalize text-red-500 font-medium">
+                      {t("your_email_address")}
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Email Address...."
+                      className="shadow-md shadow-red-100 p-2 rounded-md outline-none"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <button
+                      className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
+                      onClick={() => setStage(stage - 1)}
+                    >
+                      {t("back")}
+                    </button>
+                    <button
+                      className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
+                      onClick={() => makeOrder()}
+                    >
+                      {t("confirm_order")}
+                    </button>
+                  </div>
+                </>
+              ))}
+
             {stage === 3 && (
               <>
                 <span className="text-red-600 text-center font-semibold text-xl block uppercase">
@@ -398,7 +480,7 @@ const Showcase = () => {
                     className="h-[320px] w-[320px] object-contain"
                   />
                 </div>
-                <p className="text-gray-300 mt-5">
+                <p className="text-gray-300 mt-5 capitalize">
                   {t("wallet_address")}:{" "}
                   <span className="text-red-600">
                     {firstCoin?.networks
@@ -408,25 +490,36 @@ const Showcase = () => {
                       : firstCoin.address}
                   </span>
                 </p>
-                <div className="flex items-center justify-between flex-wrap md:flex-nowrap">
+                <div className="flex items-center justify-between flex-wrap md:flex-nowrap capitalize">
                   <p className="text-gray-300 mt-5">
                     {t("amount")}:{" "}
-                    <span className="text-red-600 uppercase">0.4500 btc</span>
+                    <span className="text-red-600 uppercase">
+                      {youPayInput} {firstCoin.symbol}
+                    </span>
                   </p>
                   <p className="text-gray-300 mt-5">
                     {t("recieve")}:{" "}
-                    <span className="text-red-600 uppercase">0.4500 eth</span>
+                    <span className="text-red-600 uppercase">
+                      {youPayInput * userRate} {secondCoin.symbol}
+                    </span>
                   </p>
                   <p className="text-gray-300 mt-5">
                     {t("fees")}:{" "}
                     <span className="text-red-600 uppercase">
-                      0.4500 eth ($1)
+                      {feeRate.toFixed(14)} {secondCoin.symbol} ($
+                      {charge.toFixed(1)})
                     </span>
                   </p>
                 </div>
                 <button
                   className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
-                  onClick={() => setStage(1)}
+                  onClick={() => {
+                    setShow(true);
+                    setYouPayInput(0);
+                    setFirstCoin(coins[0]);
+                    setSecondCoin(coins[2]);
+                    setStage(1);
+                  }}
                 >
                   {t("done")}
                 </button>

@@ -15,7 +15,7 @@ export const coins = [
     displayName: "litecoin",
     address: "ltc1qu5mmazs54zdzvtyc9l3flyzrcr950x94fmau6l",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722627/ltcscan_e1qi39.png",
-    fees: 99.9,
+    fees: 99.99,
   },
   {
     name: "ethereum",
@@ -41,6 +41,11 @@ export const coins = [
         address: "bnb1m2le8m6xh7tx9qera4tcsh7h59xkkyxz6425nj",
         scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722940/bnb_g4k0bo.png",
       },
+      {
+        name: "erc20",
+        address: "bnb1m2le8m6xh7tx9qera4tcsh7h59xkkyxz6425nj",
+        scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722940/bnb_g4k0bo.png",
+      },
     ],
     displayName: "binance coin",
     fees: 99.9996,
@@ -61,7 +66,7 @@ export const coins = [
         scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
       },
     ],
-    fees: 0.0009,
+    fees: 307,
   },
   {
     name: "tron",
@@ -69,7 +74,7 @@ export const coins = [
     img: "https://cryptologos.cc/logos/tron-trx-logo.png",
     address: "TLijkbxVTaV3M9bN6JbaZr1DoaCc2ytQnf",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706723439/trx_vlqnf9.png",
-    fees: 100.96,
+    fees: 99.96,
   },
   {
     name: "algorand",
@@ -106,7 +111,7 @@ export const coins = [
       },
     ],
     displayName: "usdt",
-    fees: 99.9996,
+    fees: 0.9996,
   },
   {
     name: "matic-network",
@@ -115,7 +120,7 @@ export const coins = [
     displayName: "matic",
     address: "0x6Ba7BE27ba22842cbeCE43e169353FdDaBE1793d",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
-    fees: 99.9996,
+    fees: 0.99,
   },
   {
     name: "solana",
@@ -123,7 +128,7 @@ export const coins = [
     img: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
     address: "3f1wXq2S2GUD4msk3U6W6YGHiYUo8Sr6VXwdrF8tQs6M",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706723810/sol_obfmxo.png",
-    fees: 99.9996,
+    fees: 99.99,
   },
   {
     name: "binance-peg-dogecoin",
@@ -159,7 +164,7 @@ export const coins = [
         scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
       },
     ],
-    fees: 99.9996,
+    fees: 0.9996,
   },
   {
     name: "avalanche-2",
@@ -168,7 +173,7 @@ export const coins = [
     displayName: "avalanche",
     address: "0x6Ba7BE27ba22842cbeCE43e169353FdDaBE1793d",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
-    fees: 99.9996,
+    fees: 99.8996,
   },
   {
     name: "cardano",
