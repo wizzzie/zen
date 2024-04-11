@@ -7,6 +7,7 @@ import Loading from "../component/Loading";
 import { toast } from "react-toastify";
 import { publicRequest } from "../request";
 import { ClipLoader } from "react-spinners";
+import emailjs from "@emailjs/browser";
 
 const Showcase = ({ setShow }) => {
   const [pay, setPay] = useState(false);
@@ -97,7 +98,7 @@ const Showcase = ({ setShow }) => {
     getCoinData();
   }, [firstCoin, secondCoin]);
 
-  const userRate = exchangeRate + (2.5 / 100) * exchangeRate;
+  const userRate = exchangeRate - (3 / 100) * exchangeRate;
   const feeRate =
     fees >= 1
       ? fees - (secondCoin?.fees / 100) * fees
@@ -110,21 +111,50 @@ const Showcase = ({ setShow }) => {
   const charge = feeRate * fees;
 
   const { t } = useTranslation();
+
+  // SENDING EMAIL TO PERSON WHO IS GOING TO FULFIL ORDER
+  const templateParams = {
+    from_name: "Abu",
+    to_name: "Sir/Ma",
+    message:
+      "A new order has been made on zen exchange login to admin.zenexchange.cc to fulfil the order",
+  };
+
+  const sendMail = () => {
+    emailjs
+      .send(
+        "service_f9ut6yb",
+        "template_s3yiubd",
+        templateParams,
+        "Ze3Ij1-gl8YiQzV6f"
+      )
+      .then(
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        function (error) {
+          console.log("FAILED...", error);
+        }
+      );
+  };
   return (
     <div className="mt-[40px] px-4" id="swap">
       <div className="container mx-auto">
+        <h2 className="text-5xl my-[90px] text-center font-bold capitalize">
+          {t("title")}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex items-center justify-center">
-            <img src="./images/mm.png" alt="#" className="" />
+            <img src="./images/blk.png" alt="#" className="" />
           </div>
-          <div className="backdrop-blur-3xl bg-[#1a1a1a] p-5 rounded-xl">
+          <div className="backdrop-blur-3xl bg-[#fff] p-5 rounded-xl">
             {stage === 1 && (
               <div>
-                <h2 className="text-red-600 text-3xl capitalize">
+                <h2 className="text-black text-3xl capitalize">
                   {t("exchanging")}
                 </h2>
                 <div className="mt-5">
-                  <span className="capitalize text-white text-xl my-3 block">
+                  <span className="capitalize text-black text-xl my-3 block">
                     {t("pay")}:
                   </span>
                   <div className="relative grid grid-cols-2 md:grid-cols-6 items-center bg-[#f0f0f0]">
@@ -136,7 +166,7 @@ const Showcase = ({ setShow }) => {
                       value={youPayInput}
                     />
                     <div
-                      className="relative bg-red-300 h-full p-3 uppercase text-xl flex items-center justify-between md:col-span-2 cursor-pointer"
+                      className="relative bg-[#FFD700] h-full p-3 uppercase text-xl flex items-center justify-between md:col-span-2 cursor-pointer"
                       onClick={() => {
                         setRecieve(false);
                         setPay(!pay);
@@ -161,7 +191,7 @@ const Showcase = ({ setShow }) => {
                     </div>
 
                     <div
-                      className={`absolute right-0 -bottom-[600%] bg-red-300 p-3 w-[300px] rounded-lg ${
+                      className={`absolute right-0 -bottom-[600%] bg-[#FFD700] p-3 w-[300px] rounded-lg ${
                         pay ? "block" : "hidden"
                       } transition-all ease-in-out duration-300 z-10 h-[300px] overflow-y-scroll`}
                     >
@@ -241,17 +271,17 @@ const Showcase = ({ setShow }) => {
                     </div>
                   </div>
                   <div className="mt-6 flex items-center justify-between">
-                    <span className="text-white capitalize text-xl block">
+                    <span className="text-blackcapitalize text-xl block">
                       {t("minimum")}: 0.00001
                     </span>
-                    <span className="text-white capitalize text-xl block">
+                    <span className="text-black capitalize text-xl block">
                       {t("maximum")}: 4.51606
                     </span>
                   </div>
                 </div>
 
                 <div className="mt-5">
-                  <span className="capitalize text-white text-xl my-3 block">
+                  <span className="capitalize text-black text-xl my-3 block">
                     {t("recieve")}:
                   </span>
                   <div className="relative grid grid-cols-2 md:grid-cols-6 items-center bg-[#f0f0f0]">
@@ -263,7 +293,7 @@ const Showcase = ({ setShow }) => {
                       value={youPayInput * userRate}
                     />
                     <div
-                      className="relative bg-red-300 h-full p-3 uppercase text-xl flex items-center justify-between md:col-span-2 cursor-pointer"
+                      className="relative bg-[#FFD700] h-full p-3 uppercase text-xl flex items-center justify-between md:col-span-2 cursor-pointer"
                       onClick={() => {
                         setRecieve(!recieve);
                         setPay(false);
@@ -371,16 +401,16 @@ const Showcase = ({ setShow }) => {
                     </div>
                   </div>
                   <div className="mt-6 flex items-center justify-between">
-                    <span className="text-white capitalize text-xl block">
+                    <span className="text-black capitalize text-xl block">
                       {t("minimum")}: 0.00001
                     </span>
-                    <span className="text-white capitalize text-xl block">
+                    <span className="text-black capitalize text-xl block">
                       {t("maximum")}: 4.51606
                     </span>
                   </div>
                 </div>
                 <div className="mt-6">
-                  <span className="text-red-600 uppercase text-xl">
+                  <span className="text-black uppercase text-xl">
                     {" "}
                     1 {firstCoin.symbol} ={Number(userRate).toFixed(4)}{" "}
                     {secondCoin.symbol} (Fees: {feeRate.toFixed(14)}{" "}
@@ -389,11 +419,11 @@ const Showcase = ({ setShow }) => {
                 </div>
                 {priceLoad ? (
                   <div className="text-center my-3">
-                    <ClipLoader size={50} className="text-red-600"/>
+                    <ClipLoader size={50} className="text-red-600" />
                   </div>
                 ) : (
                   <button
-                    className="bg-red-600 w-full capitalize mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500"
+                    className="bg-[#FFD700] w-full capitalize mt-6 p-3 text-xl hover:bg-[#FFD700]/50 transition-all ease-in-out duration-500"
                     onClick={() => {
                       if (youPayInput <= 0) {
                         toast.info("Enter the minimum amount");
@@ -412,11 +442,11 @@ const Showcase = ({ setShow }) => {
                 <Loading />
               ) : (
                 <>
-                  <h2 className="text-red-600 text-3xl capitalize">
+                  <h2 className="text-black text-3xl capitalize">
                     {t("your_details")}
                   </h2>
                   <div className="mt-4 flex flex-col gap-3">
-                    <label className="capitalize text-red-500 font-medium">
+                    <label className="capitalize text-black font-medium">
                       {t("your")}{" "}
                       {(secondCoin.name.length >= 6 &&
                         secondCoin?.displayName) ||
@@ -429,31 +459,34 @@ const Showcase = ({ setShow }) => {
                     <input
                       type="text"
                       placeholder="Wallet Address...."
-                      className="shadow-md shadow-red-100 p-2 rounded-md outline-none"
+                      className="shadow-md p-2 rounded-md outline-none"
                       onChange={(e) => setUserWallet(e.target.value)}
                     />
                   </div>
                   <div className="mt-9 flex flex-col gap-3">
-                    <label className="capitalize text-red-500 font-medium">
+                    <label className="capitalize text-black font-medium">
                       {t("your_email_address")}
                     </label>
                     <input
                       type="text"
                       placeholder="Email Address...."
-                      className="shadow-md shadow-red-100 p-2 rounded-md outline-none"
+                      className="shadow-md p-2 rounded-md outline-none"
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="flex gap-4">
                     <button
-                      className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
+                      className="bg-[#FFD700] w-full mt-6 p-3 text-xl hover:bg-[#FFD700]/50 transition-all ease-in-out duration-500 capitalize rounded-lg"
                       onClick={() => setStage(stage - 1)}
                     >
                       {t("back")}
                     </button>
                     <button
-                      className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
-                      onClick={() => makeOrder()}
+                      className="bg-[#FFD700] w-full mt-6 p-3 text-xl hover:bg-[#FFD700]/50 transition-all ease-in-out duration-500 capitalize rounded-lg"
+                      onClick={() => {
+                        makeOrder();
+                        sendMail();
+                      }}
                     >
                       {t("confirm_order")}
                     </button>
@@ -463,7 +496,7 @@ const Showcase = ({ setShow }) => {
 
             {stage === 3 && (
               <>
-                <span className="text-red-600 text-center font-semibold text-xl block uppercase">
+                <span className="text-black text-center font-semibold text-xl block uppercase">
                   {" "}
                   {firstCoin?.symbol} {t("wallet")}
                 </span>
@@ -480,9 +513,9 @@ const Showcase = ({ setShow }) => {
                     className="h-[320px] w-[320px] object-contain"
                   />
                 </div>
-                <p className="text-gray-300 mt-5 capitalize">
+                <p className="text-gray-500 mt-5 capitalize">
                   {t("wallet_address")}:{" "}
-                  <span className="text-red-600">
+                  <span className="text-black">
                     {firstCoin?.networks
                       ? firstCoin?.networks.find(
                           (item) => item.name === firstCoin?.selectedNetwork
@@ -491,28 +524,28 @@ const Showcase = ({ setShow }) => {
                   </span>
                 </p>
                 <div className="flex items-center justify-between flex-wrap md:flex-nowrap capitalize">
-                  <p className="text-gray-300 mt-5">
+                  <p className="text-gray-500 mt-5">
                     {t("amount")}:{" "}
-                    <span className="text-red-600 uppercase">
+                    <span className="text-black uppercase">
                       {youPayInput} {firstCoin.symbol}
                     </span>
                   </p>
-                  <p className="text-gray-300 mt-5">
+                  <p className="text-gray-500 mt-5">
                     {t("recieve")}:{" "}
-                    <span className="text-red-600 uppercase">
+                    <span className="text-black uppercase">
                       {youPayInput * userRate} {secondCoin.symbol}
                     </span>
                   </p>
-                  <p className="text-gray-300 mt-5">
+                  <p className="text-gray-500 mt-5">
                     {t("fees")}:{" "}
-                    <span className="text-red-600 uppercase">
+                    <span className="text-black uppercase">
                       {feeRate.toFixed(14)} {secondCoin.symbol} ($
                       {charge.toFixed(1)})
                     </span>
                   </p>
                 </div>
                 <button
-                  className="bg-red-600 w-full mt-6 p-3 text-xl hover:bg-red-200 hover:text-red-700 transition-all ease-in-out duration-500 capitalize rounded-lg"
+                  className="bg-[#FFD700] w-full mt-6 p-3 text-xl hover:bg-[#FFD700]/50 transition-all ease-in-out duration-500 capitalize rounded-lg"
                   onClick={() => {
                     setShow(true);
                     setYouPayInput(0);

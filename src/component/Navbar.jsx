@@ -70,12 +70,12 @@ const Navbar = () => {
     document.body.dir = currentLanguagr.dir || "ltr";
   }, [currentLanguagr]);
   return (
-    <div className="shadow-xl shadow-[#000]">
+    <div className="bg-white">
       <div className="container mx-auto sm:px-0 px-3 ">
         <div className="flex items-center justify-between">
           <div>
             <img
-              src="./images/logo.png"
+              src="./images/blk.png"
               alt="Logo"
               className="sm:w-[110px] sm:h-[110px] object-contain w-[90px] h-[90px]"
             />
@@ -83,33 +83,33 @@ const Navbar = () => {
           <div className="flex items-center gap-[15px]">
             <a
               href="#swap"
-              className="text-[18px] capitalize text-red-600 block transition-all ease-in-out duration-300"
+              className="text-[18px] capitalize text-black block transition-all ease-in-out duration-300"
             >
               {t("swap")}
             </a>
             <a
               href="#review"
-              className="text-[18px] capitalize text-red-600 block transition-all ease-in-out duration-300"
+              className="text-[18px] capitalize text-black block transition-all ease-in-out duration-300"
             >
               {t("review")}
             </a>
           </div>
           <div className="relative sm:w-[110px] flex justify-end">
             <BsGlobeAsiaAustralia
-              className="text-red-600 text-2xl"
+              className="text-black text-2xl"
               onClick={() => setShow(!show)}
             />
             <div
               className={`absolute z-10 ${
                 document.body.dir === "ltr" ? "right-[0%]" : "left-[0%]"
-              } bg-gray-500 w-[230px] p-3 ${
+              } bg-black w-[230px] p-3 ${
                 show ? "top-[150%]" : "-top-[2100%]"
               } transition-all ease-in-out duration-300`}
             >
               {languages.map(({ code, name, country_code, img }) => (
                 <div
-                  className={`flex items-center gap-[10px] cursor-pointer hover:bg-gray-600 p-2 transition-all ease-in-out duration-300 ${
-                    currentLanguagr.code === code && "bg-red-900"
+                  className={`flex items-center gap-[10px] cursor-pointer hover:bg-[#FFD700] p-2 transition-all ease-in-out duration-300 ${
+                    currentLanguagr.code === code && "bg-[#FFD700]"
                   }`}
                   key={country_code}
                   onClick={() => {

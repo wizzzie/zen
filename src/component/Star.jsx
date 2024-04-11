@@ -29,7 +29,7 @@ const Star = ({ setShow }) => {
     }
   };
   return (
-    <div className="fixed top-0 left-0 h-screen bg-red-700/70 z-50 w-full flex items-center justify-center px-5 md:px-0">
+    <div className="fixed top-0 left-0 h-screen bg-[#FFD700]/70 z-50 w-full flex items-center justify-center px-5 md:px-0">
       <div className="bg-black p-6 rounded-2xl md:w-[600px] w-full">
         <div className="flex items-center justify-end">
           <IoMdClose
@@ -78,12 +78,12 @@ const Star = ({ setShow }) => {
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
           {loading ? (
-            <button className="bg-red-500 hover:bg-red-300 transition-all duration-300 ease-in-out py-[10px] w-full my-[25px] rounded-xl">
+            <button className="bg-[#FFD700] hover:bg-[#FFD700]/50 transition-all duration-300 ease-in-out py-[10px] w-full my-[25px] rounded-xl">
               Sending...............
             </button>
           ) : (
             <button
-              className="bg-red-500 hover:bg-red-300 transition-all duration-300 ease-in-out py-[10px] w-full my-[25px] rounded-xl"
+              className="bg-[#FFD700] hover:bg-[#FFD700]/50 transition-all duration-300 ease-in-out py-[10px] w-full my-[25px] rounded-xl"
               onClick={submitReview}
             >
               Send Review

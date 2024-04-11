@@ -21,11 +21,11 @@ const Review = () => {
   return (
     <div className="my-[40px]" id="review">
       <div className="container mx-auto">
-        <div className="overflow-x-scroll p-3 scrollbar scrollbar-thumb-red-600 ">
+        <div className="overflow-x-scroll p-3 scrollbar scrollbar-thumb-[#FFD700] ">
           <div className="flex gap-3">
             {ratings.map((rating) => (
               <div
-                className="flex flex-col md:flex-row items-center justify-between shadow-lg shadow-black bg-[#aeaeae] p-4 rounded-[10px] min-w-[300px] md:min-w-[700px]"
+                className="flex flex-col md:flex-row items-center justify-between shadow-md shadow-black bg-white p-4 rounded-[10px] min-w-[300px] md:min-w-[500px]"
                 key={rating._id}
               >
                 <div className="flex gap-5 items-center flex-col md:flex-row">
@@ -45,7 +45,7 @@ const Review = () => {
                     </p>
                     <div className="flex justify-center md:justify-start my-3 md:my-0 items-center gap-3 text-yellow-600">
                       {[...Array(rating.stars)].map((item, i) => (
-                        <FaStar key={i} />
+                        <FaStar key={i} className="text-[#FFD700]" />
                       ))}
                     </div>
                   </div>
