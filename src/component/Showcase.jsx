@@ -78,6 +78,7 @@ const Showcase = ({ setShow }) => {
 
   // CALLING API
   const getCoinData = async () => {
+    setPriceLoad(true);
     try {
       const res = await axios.get(
         `https://api.coingecko.com/api/v3/simple/price?ids=${firstCoin.name}%2C${secondCoin.name}&vs_currencies=usd`
@@ -179,9 +180,8 @@ const Showcase = ({ setShow }) => {
                           className="md:w-[30px] md:h-[30px] w-[20px] h-[20px] object-contain"
                         />
                         <span className="block text-[14px] md:text-[15px]">
-                          {(firstCoin.name.length >= 6 &&
-                            firstCoin?.displayName) ||
-                            firstCoin.name}
+                          {(firstCoin.name.length >= 6 && firstCoin?.symbol) ||
+                            firstCoin.symbol}
                           {firstCoin.networks && (
                             <span> ({firstCoin?.selectedNetwork})</span>
                           )}
@@ -262,7 +262,7 @@ const Showcase = ({ setShow }) => {
                                   className="w-[20px] h-[20px] object-contain"
                                 />
                                 <span className="block uppercase">
-                                  {coin.symbol}
+                                  {coin.name}
                                 </span>
                               </div>
                             );
@@ -307,8 +307,8 @@ const Showcase = ({ setShow }) => {
                         />
                         <span className="block text-[14px] md:text-[15px]">
                           {(secondCoin.name.length >= 6 &&
-                            secondCoin?.displayName) ||
-                            secondCoin.name}
+                            secondCoin?.symbol) ||
+                            secondCoin.symbol}
                           {secondCoin.networks && (
                             <span> ({secondCoin?.selectedNetwork})</span>
                           )}
@@ -321,7 +321,7 @@ const Showcase = ({ setShow }) => {
                         secondCoin.networks
                           ? "-bottom-[600%]"
                           : "-bottom-[600%]"
-                      } bg-red-300 p-3 w-[300px] rounded-lg ${
+                      } bg-[#ffd700] p-3 w-[300px] rounded-lg ${
                         recieve ? "block" : "hidden"
                       } transition-all ease-in-out duration-300 h-[300px] overflow-y-scroll `}
                     >
@@ -392,7 +392,7 @@ const Showcase = ({ setShow }) => {
                                   className="w-[20px] h-[20px] object-contain"
                                 />
                                 <span className="block uppercase">
-                                  {coin.symbol}
+                                  {coin.name}
                                 </span>
                               </div>
                             );

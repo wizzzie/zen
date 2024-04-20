@@ -23,5 +23,14 @@
   "done": "Erledigt",
   "back": "zurück",
   "confirm_order": "Bestellung bestätigen",
-  "title": "Tauschen Sie Kryptowährungen überall aus"
+  "title": "Tauschen Sie Kryptowährungen überall aus",
+  "title_1": "Selecteer uw uitwisseling",
+  "title_2": "Geben Sie die Krypto-Wallet-Adresse ein",
+  "title_3": "Geben sie ihre E-Mailadresse ein",
+  "title_4": "Anzahlung senden",
+  "content_1": "Wählen Sie Ihre bestehende Kryptowährung aus, die Sie zum Umtausch haben, und geben Sie im Menü „Sie zahlen“ den Betrag der Währung ein, die Sie zum Umtausch haben. Nachdem Sie Ihren bestehenden Betrag eingegeben haben, müssen Sie im Menü „Sie erhalten“ die Währung auswählen, von der Sie erhalten möchten.",
+  "content_2": "Kopieren Sie die gewünschte Wallet-Adresse, von der Sie empfangen möchten, und fügen Sie sie in das Feld „Geben Sie Ihre xxxxxx-Wallet-Adresse ein“ ein. Seien Sie bitte vorsichtig, wenn Sie Ihre Wallet-Adresse eingeben, da der Versand an eine falsche Adresse zum Verlust von Geldern führt.",
+  "content_3": "Geben Sie Ihre gültige E-Mail-Adresse ein, um Ihre Bestellbenachrichtigungen zu erhalten, und klicken Sie auf Bestellung bestätigen.",
+  "content_4": "Sobald Sie auf „Bestellung bestätigen“ klicken, stellt Ihnen Zen Exchange die Wallet-Adresse zur Verfügung, an die Sie Ihre Einzahlung senden können, oder Sie können die Einzahlung einfach über den QR-Code senden. Sobald die Zahlung erfolgt ist, wird Ihr Umtausch bearbeitet.",
+  "how_to": "wie man Zen Exchange nutzt"
 }

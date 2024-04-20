@@ -23,5 +23,14 @@
   "done": "Tamamlandı",
   "back": "geri",
   "confirm_order": "sipariş onaylamak",
-  "title": "Kripto para birimlerini her yerde değiştirin"
+  "title": "Kripto para birimlerini her yerde değiştirin",
+  "title_1": "Borsanızı Seçin",
+  "title_2": "kripto cüzdan adresini girin",
+  "title_3": "E-posta adresinizi giriniz",
+  "title_4": "depozito gönder",
+  "content_1": "Döviz bozdurmak için elinizde bulunan kripto para biriminizi seçin ve “Öde” menüsünden bozdurmak için sahip olduğunuz para biriminin miktarını girin. Mevcut tutarınızı girdikten sonra “Aldığınız para birimi” menüsünden almak istediğiniz para birimini seçmeniz gerekmektedir.",
+  "content_2": "Almak için kullanacağınız istediğiniz cüzdan adresini kopyalayın ve 'xxxxxx cüzdan adresinizi girin' kutusuna yapıştırın. Yanlış bir adrese gönderim para kaybına neden olacağından cüzdan adresinizi girerken lütfen dikkatli olun.",
+  "content_3": "Sipariş bildirimlerinizi almak için geçerli e-posta adresinizi girin ve siparişi onayla butonuna tıklayın.",
+  "content_4": "Siparişi onayla seçeneğine tıkladığınızda, Zen Exchange size para yatırma işleminizi göndereceğiniz cüzdan adresini verecektir veya QR kodu aracılığıyla kolayca gönderebilirsiniz. Ödeme yapıldıktan sonra swap işleminiz gerçekleştirilecektir.",
+  "how_to": "zen değişimi nasıl kullanılır"
 }

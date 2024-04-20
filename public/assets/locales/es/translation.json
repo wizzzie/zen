@@ -23,5 +23,14 @@
   "done": "hecho",
   "back": "atrás",
   "confirm_order": "confirmar pedido",
-  "title": "Intercambia criptomonedas en cualquier lugar"
+  "title": "Intercambia criptomonedas en cualquier lugar",
+  "title_1": "Selecciona tu intercambio",
+  "title_2": "ingrese la dirección de la billetera criptográfica",
+  "title_3": "introduce tu dirección de correo electrónico",
+  "title_4": "enviar deposito",
+  "content_1": "Seleccione su moneda criptográfica existente en la que tiene para cambiar e ingrese el monto de la moneda que tiene para cambiar en el menú 'Usted paga'. Después de ingresar su monto existente, debe seleccionar la moneda desde la que desea recibir en el menú 'Usted recibe'.",
+  "content_2": "Copie la dirección de su billetera deseada que utilizará para recibir y péguela en el cuadro 'Ingrese su dirección de billetera xxxxxx'. Tenga cuidado al ingresar la dirección de su billetera, ya que enviarla a una dirección incorrecta resultará en la pérdida de fondos.",
+  "content_3": "Ingrese su dirección de correo electrónico válida para recibir notificaciones de su pedido y haga clic en confirmar pedido.",
+  "content_4": "",
+  "how_to": "cómo utilizar el intercambio zen"
 }

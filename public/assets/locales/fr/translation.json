@@ -23,5 +23,14 @@
   "done": "fait",
   "back": "dos",
   "confirm_order": "confirmer la commande",
-  "title": "Échangez des crypto-monnaies n'importe où"
+  "title": "Échangez des crypto-monnaies n'importe où",
+  "title_1": "Sélectionnez votre échange",
+  "title_2": "entrez l'adresse du portefeuille crypto",
+  "title_3": "Entrez votre adresse email",
+  "title_4": "envoyer un dépôt",
+  "content_1": "Sélectionnez votre devise crypto existante sur celle que vous avez à échanger et entrez le montant de la devise que vous avez à échanger dans le menu « Vous payez ». Après avoir saisi votre montant existant, vous devez sélectionner la devise dans laquelle vous souhaitez recevoir dans le menu « Vous recevez ».",
+  "content_2": "copiez l'adresse de portefeuille que vous utiliserez pour recevoir et collez-la dans la case « Entrez l'adresse de votre portefeuille xxxxxx ». Soyez prudent lorsque vous saisissez l'adresse de votre portefeuille, car l'envoi à une mauvaise adresse entraînera une perte de fonds.",
+  "content_3": "Entrez votre adresse e-mail valide pour recevoir vos notifications de commande et cliquez sur confirmer la commande.",
+  "content_4": "Immédiatement lorsque vous cliquez sur confirmer la commande, Zen Exchange vous fournira l'adresse du portefeuille à laquelle envoyer votre dépôt ou vous pourrez facilement l'envoyer via le code QR. Une fois le paiement effectué, votre échange sera traité.",
+  "how_to": "comment utiliser l'échange zen"
 }
