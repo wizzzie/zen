@@ -229,7 +229,7 @@ const Showcase = ({ setShow }) => {
                                   className="w-[20px] h-[20px] object-contain"
                                 />
                                 <select
-                                  className="bg-transparent uppercase outline-none"
+                                  className="bg-transparent capitalize outline-none"
                                   onChange={(e) => {
                                     setPay(false);
                                     setFirstCoin({
@@ -238,10 +238,10 @@ const Showcase = ({ setShow }) => {
                                     });
                                   }}
                                 >
-                                  <option value="">{coin.name}</option>
+                                  <option value="">{coin.showName}</option>
                                   {coin.networks.map((network, i) => (
                                     <option value={network.name} key={i}>
-                                      {coin.name} ({network.name})
+                                      {coin.showName} ({network.name})
                                     </option>
                                   ))}
                                 </select>
@@ -261,8 +261,8 @@ const Showcase = ({ setShow }) => {
                                   alt="#"
                                   className="w-[20px] h-[20px] object-contain"
                                 />
-                                <span className="block uppercase">
-                                  {coin.name}
+                                <span className="block capitalize">
+                                  {coin.showName || coin.name}
                                 </span>
                               </div>
                             );
@@ -359,7 +359,7 @@ const Showcase = ({ setShow }) => {
                                   className="w-[20px] h-[20px] object-contain"
                                 />
                                 <select
-                                  className="bg-transparent uppercase outline-none"
+                                  className="bg-transparent capitalize outline-none"
                                   onChange={(e) => {
                                     setRecieve(false);
                                     setSecondCoin({
@@ -368,10 +368,10 @@ const Showcase = ({ setShow }) => {
                                     });
                                   }}
                                 >
-                                  <option value="">{coin.name}</option>
+                                  <option value="">{coin.showName}</option>
                                   {coin.networks.map((network, i) => (
                                     <option value={network.name} key={i}>
-                                      {coin.name} ({network.name})
+                                      {coin.showName} ({network.name})
                                     </option>
                                   ))}
                                 </select>
@@ -391,8 +391,8 @@ const Showcase = ({ setShow }) => {
                                   alt="#"
                                   className="w-[20px] h-[20px] object-contain"
                                 />
-                                <span className="block uppercase">
-                                  {coin.name}
+                                <span className="block capitalize">
+                                  {coin.showName || coin.name}
                                 </span>
                               </div>
                             );

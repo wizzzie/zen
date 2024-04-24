@@ -7,6 +7,7 @@ export const coins = [
     address: "bc1q25jw9r3pkr4a7kca2hehydz8l0vzx6qx43acpy",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722137/btcscan_tahwl2.png",
     fees: 99.99999996,
+    showName: "bitcoin",
   },
   {
     name: "litecoin",
@@ -16,6 +17,7 @@ export const coins = [
     address: "ltc1qu5mmazs54zdzvtyc9l3flyzrcr950x94fmau6l",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722627/ltcscan_e1qi39.png",
     fees: 99.99,
+    showName: "litecoin",
   },
   {
     name: "ethereum",
@@ -25,6 +27,7 @@ export const coins = [
     address: "0x6Ba7BE27ba22842cbeCE43e169353FdDaBE1793d",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
     fees: 99.999966,
+    showname: "etherum",
   },
   {
     name: "binancecoin",
@@ -49,6 +52,7 @@ export const coins = [
     ],
     displayName: "binance coin",
     fees: 99.9996,
+    showName: "binance coin",
   },
   {
     name: "shiba-inu",
@@ -67,6 +71,7 @@ export const coins = [
       },
     ],
     fees: 307,
+    showName: "shiba-inu",
   },
   {
     name: "tron",
@@ -112,6 +117,7 @@ export const coins = [
     ],
     displayName: "usdt",
     fees: 0.9996,
+    showName: "USDT",
   },
   {
     name: "matic-network",
@@ -121,6 +127,7 @@ export const coins = [
     address: "0x6Ba7BE27ba22842cbeCE43e169353FdDaBE1793d",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
     fees: 0.99,
+    showName: "Matic",
   },
   {
     name: "solana",
@@ -129,6 +136,7 @@ export const coins = [
     address: "3f1wXq2S2GUD4msk3U6W6YGHiYUo8Sr6VXwdrF8tQs6M",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706723810/sol_obfmxo.png",
     fees: 99.99,
+    showName: "solana",
   },
   {
     name: "binance-peg-dogecoin",
@@ -138,6 +146,7 @@ export const coins = [
     address: "DEGKkqrnTDYmCeaTfMZyhDdygyvxvgThsz",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706723964/dog_e0wneg.png",
     fees: 99.9996,
+    showName: "doge coin",
   },
   {
     name: "binance-peg-xrp",
@@ -147,6 +156,7 @@ export const coins = [
     address: "rBZ5e1tMwBJrLKRQ4uTmVKxg6sNdYtUSuN",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706724100/xrp_bchnqc.png",
     fees: 99.9996,
+    showName: "xrp",
   },
   {
     name: "usd-coin",
@@ -165,6 +175,7 @@ export const coins = [
       },
     ],
     fees: 0.9996,
+    showName: "usdc",
   },
   {
     name: "avalanche-2",
@@ -174,6 +185,7 @@ export const coins = [
     address: "0x6Ba7BE27ba22842cbeCE43e169353FdDaBE1793d",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706722731/bep20eth_cetd5d.png",
     fees: 99.8996,
+    showName: "avalanche",
   },
   {
     name: "cardano",
@@ -192,5 +204,6 @@ export const coins = [
     address: "qrp3fqhtd2flcyllleaq9txhawj8mk8dsvt3cxnfr9",
     scan: "https://res.cloudinary.com/dvo4tlcrx/image/upload/v1706724405/bich_ghces1.png",
     fees: 99.9996,
+    showName: "bitcoin cash",
   },
 ];
